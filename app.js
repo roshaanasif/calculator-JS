@@ -50,78 +50,125 @@ let currentNumber=0;
 let calculate=()=>{
     let text=input.value;
     let textArr=text.split("");
+    // console.log(textArr);
+    
     input.value="";
     currentNumber="";     
 
     gettingNumbers(textArr);
-
     console.log(numbers);
 
+    let index=0;
+    let modulusRepeat=0;
+    let divideRepeat=0;
+    let multiplyRepeat=0;
+    let addRepeat=0;
+    let subtractRepeat=0;
+    let startCalculate =false;
+
+    
+    signs.forEach(item => {
+      if (item=="%") {
+          modulusRepeat++;
+      }else if(item=="/"){
+          divideRepeat++
+      }else if(item=="*"){
+          multiplyRepeat++
+      }else if(item=="+"){
+          addRepeat++
+      }else if(item=="-"){
+          subtractRepeat++
+      }
+    
+    })
+
+    if (signs.length*2==numbers.length) {
+      startCalculate=true;
+    }else{
+      input.innerHTML = "";
+      isSignRepeat=true;
+      isWriteNumber=false;
+      notyf.error("Complete the statement");
+      numbers=[]
+      // signs=[]
+    }
+
+
    
-let index=0;
 
-while (index<signs.length) { 
-        if (signs.includes("%")) {
+while (index<signs.length && startCalculate) { 
 
-          let i= signs.indexOf("%");
-          num1=numbers[i];
-          num2=numbers[i+1];
+    if (signs.includes("%")) {
+
+      while (modulusRepeat>0) {
+        let i= signs.indexOf("%");
+        num1=numbers[i];
+        num2=numbers[i+1];
+        
+        signs.splice(i,1);
+        console.log("signs array"+signs);
+        
+        let answer=reminderNumbers(num1,num2);
+        numbers.splice(i,2,answer);
+        console.log(numbers);
+        modulusRepeat--;
+        
+      }}
           
-          signs.splice(i,1);
-          console.log("signs array"+signs);
-          
-          let answer=reminderNumbers(num1,num2);
-          numbers.splice(i,2,answer);
-          console.log(numbers);
-          
-          
-      }
-      
       if (signs.includes("/")) {
-        let i= signs.indexOf("/");
-          num1=numbers[i];
-          num2=numbers[i+1];
 
-          signs.splice(i,1);
-          console.log("signs array"+signs);
+        while (divideRepeat>0) {
+            let i= signs.indexOf("/");
+              num1=numbers[i];
+              num2=numbers[i+1];
+
+              signs.splice(i,1);
+              console.log("signs array"+signs);
+              
+              let answer=divideNumbers(num1,num2);
+              numbers.splice(i,2,answer);
+              console.log(numbers);
+              divideRepeat--;
+              
+          }}
           
-          let answer=divideNumbers(num1,num2);
-          numbers.splice(i,2,answer);
-          console.log(numbers);
+    if (signs.includes("*")) {
+      while (multiplyRepeat>0) {
+            let i= signs.indexOf("*");
+              num1=numbers[i];
+              num2=numbers[i+1];
+
+              signs.splice(i,1);
+              console.log("signs array"+signs);
+
+              let answer=multiplyNumbers(num1,num2);
+              numbers.splice(i,2,answer);
+              console.log(numbers);
+              multiplyRepeat--;
+              
+          }}
           
-      }
-      
-      if (signs.includes("*")) {
-        let i= signs.indexOf("*");
-          num1=numbers[i];
-          num2=numbers[i+1];
+    if (signs.includes("-")) {
 
-          signs.splice(i,1);
-          console.log("signs array"+signs);
+      while (subtractRepeat>0) {
 
-          let answer=multiplyNumbers(num1,num2);
-          numbers.splice(i,2,answer);
-          console.log(numbers);
-          
-      }
-      
-      if (signs.includes("-")) {
-        let i= signs.indexOf("-");
-          num1=numbers[i];
-          num2=numbers[i+1];
+            let i= signs.indexOf("-");
+              num1=numbers[i];
+              num2=numbers[i+1];
 
-          signs.splice(i,1);
-          console.log("signs array"+signs);
+              signs.splice(i,1);
+              console.log("signs array"+signs);
 
-          
-          
-          let answer=subNumbers(num1,num2);
-          numbers.splice(i,2,answer);
-          console.log(numbers);
-            
-      }
+              let answer=subNumbers(num1,num2);
+              numbers.splice(i,2,answer);
+              console.log(numbers);
+              subtractRepeat--;
+                
+          }}
 
-      if (signs.includes("+")) {
+    if (signs.includes("+")) {
+          while (addRepeat>0) {
+
         let i= signs.indexOf("+");
           num1=numbers[i];
           num2=numbers[i+1];
@@ -132,17 +179,46 @@ while (index<signs.length) {
           let answer=addNumbers(num1,num2);        
           numbers.splice(i,2,answer);
           console.log(numbers);
+          addRepeat--;
           
-      }
+      }}
       
 
-} 
+}
 
-      input.value=numbers
+// console.log(numbers.join(""));
+  let toAcheivefinalAnswer=numbers.join("");
+  let finalAnswer=decimalHandling(toAcheivefinalAnswer);
+  console.log(finalAnswer);
+
+   input.value=finalAnswer;  
+       
       numbers=[]
       signs=[]
 
+     
     }
+
+let AfterPointIdentifying;
+
+let decimalHandling=(num)=>{
+
+  let splitArr=num.split("");
+
+  if (splitArr.includes(".")) {
+    AfterPointIdentifying =splitArr.join("");
+    let resultdecimal= Number(AfterPointIdentifying).toFixed(3);
+    return resultdecimal;
+    
+  }else{
+    AfterPointIdentifying =splitArr.join("");
+    return AfterPointIdentifying;
+  } 
+
+  // splitArr="";
+
+
+}
 
     
 
@@ -175,9 +251,9 @@ let reminderNumbers=(a,b)=>{
   
   
 let gettingNumbers=(list)=>{
-   list.forEach( (char) => {
-      if (char >= "0" && char <= "9") {
-        currentNumber += char;  
+   list.forEach( char => {
+      if (char >= "0" && char <= "9" || char==".") {
+        currentNumber += char;
       }else {
         numbers.push(Number(currentNumber));
         currentNumber="";
