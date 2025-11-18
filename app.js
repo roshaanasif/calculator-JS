@@ -1,4 +1,3 @@
-// Initialize Notyf
 const notyf = new Notyf({
   duration: 2000, // 2 seconds
   position: { x: 'right', y: 'top' },
@@ -50,7 +49,6 @@ let currentNumber=0;
 let calculate=()=>{
     let text=input.value;
     let textArr=text.split("");
-    // console.log(textArr);
     
     input.value="";
     currentNumber="";     
@@ -90,7 +88,7 @@ let calculate=()=>{
       isWriteNumber=false;
       notyf.error("Complete the statement");
       numbers=[]
-      // signs=[]
+     
     }
 
 
@@ -186,7 +184,7 @@ while (index<signs.length && startCalculate) {
 
 }
 
-// console.log(numbers.join(""));
+
   let toAcheivefinalAnswer=numbers.join("");
   let finalAnswer=decimalHandling(toAcheivefinalAnswer);
   console.log(finalAnswer);
@@ -215,7 +213,7 @@ let decimalHandling=(num)=>{
     return AfterPointIdentifying;
   } 
 
-  // splitArr="";
+
 
 
 }
@@ -227,7 +225,6 @@ let decimalHandling=(num)=>{
 
 let addNumbers=(a,b)=>{
     result=Number(a)+Number(b);
-    // console.log(result);
     return result
     
   
@@ -273,6 +270,7 @@ let gettingNumbers=(list)=>{
 let clearAll=()=>{
  input.value="";
 }
+
 
 
 
