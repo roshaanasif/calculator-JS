@@ -269,7 +269,10 @@ let gettingNumbers=(list)=>{
 
 let clearAll=()=>{
  input.value="";
+isSignRepeat=true;
+isWriteNumber=false;
 }
+
 
 
 
