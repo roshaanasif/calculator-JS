@@ -1,13 +1,13 @@
-**Calculator**
+**Calculator**<br>
 A simple, clean, and fully functional Calculator Application built to perform basic arithmetic operations efficiently.
 This project demonstrates core programming concepts including functions, DOM manipulation and conditional logic.
 
-🚀**Features**
+🚀**Features**<br>
 
-➕ Addition
-➖ Subtraction
-✖️ Multiplication
-➗ Division
-🔢 Decimal Number Support
-🧹 Clear / Reset Functionality
-⚡ responsive and user-friendly interface
+➕ Addition<br>
+➖ Subtraction<br>
+✖️ Multiplication<br>
+➗ Division<br>
+🔢 Decimal Number Support<br>
+🧹 Clear / Reset Functionality<br>
+⚡ responsive and user-friendly interface<br>
