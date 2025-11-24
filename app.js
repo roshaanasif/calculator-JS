@@ -1,3 +1,4 @@
+// Initialize Notyf
 const notyf = new Notyf({
   duration: 2000, // 2 seconds
   position: { x: 'right', y: 'top' },
@@ -33,11 +34,27 @@ let removeChar=()=>{
     let textArr=text.split("");
     input.value="";
     textArr.splice(textArr.length-1,1);
-    let afterRemovedChar=textArr.join("")
+    console.log(textArr);
+    console.log(textArr[textArr.length-1]);
+
+    
+    if (textArr[textArr.length-1]=="+" || textArr[textArr.length-1]=="-" || textArr[textArr.length-1]=="*" || textArr[textArr.length-1]=="/" || textArr[textArr.length-1]=="%" ) {
+          isSignRepeat=false;
+          isWriteNumber=true;
+        }else{
+          isSignRepeat=true;
+          isWriteNumber=true;
+        }
+
+    let afterRemovedChar=textArr.join("");
     console.log(afterRemovedChar);
     input.value=afterRemovedChar;
-    isWriteNumber=true;
-    isSignRepeat=true;
+
+    // if (textArr.length>0) {
+    //   isWriteNumber=true;
+    // }
+    
+    // isWriteNumber=true;
 }
 let num1;
 let num2;
@@ -49,6 +66,7 @@ let currentNumber=0;
 let calculate=()=>{
     let text=input.value;
     let textArr=text.split("");
+    // console.log(textArr);
     
     input.value="";
     currentNumber="";     
@@ -88,7 +106,7 @@ let calculate=()=>{
       isWriteNumber=false;
       notyf.error("Complete the statement");
       numbers=[]
-     
+      // signs=[]
     }
 
 
@@ -184,7 +202,7 @@ while (index<signs.length && startCalculate) {
 
 }
 
-
+// console.log(numbers.join(""));
   let toAcheivefinalAnswer=numbers.join("");
   let finalAnswer=decimalHandling(toAcheivefinalAnswer);
   console.log(finalAnswer);
@@ -213,7 +231,7 @@ let decimalHandling=(num)=>{
     return AfterPointIdentifying;
   } 
 
-
+  // splitArr="";
 
 
 }
@@ -225,6 +243,7 @@ let decimalHandling=(num)=>{
 
 let addNumbers=(a,b)=>{
     result=Number(a)+Number(b);
+    // console.log(result);
     return result
     
   
@@ -269,11 +288,8 @@ let gettingNumbers=(list)=>{
 
 let clearAll=()=>{
  input.value="";
-isSignRepeat=true;
-isWriteNumber=false;
+   isWriteNumber=false;
 }
-
-
 
 
 
