@@ -43,7 +43,7 @@ let removeChar=()=>{
           isWriteNumber=true;
         }else{
           isSignRepeat=true;
-          isWriteNumber=true;
+          isWriteNumber=false;
         }
 
     let afterRemovedChar=textArr.join("");
@@ -290,6 +290,7 @@ let clearAll=()=>{
  input.value="";
    isWriteNumber=false;
 }
+
 
 
 
